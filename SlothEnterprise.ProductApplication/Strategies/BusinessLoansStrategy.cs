@@ -2,6 +2,7 @@
 using SlothEnterprise.External;
 using SlothEnterprise.External.V1;
 using SlothEnterprise.ProductApplication.Applications;
+using SlothEnterprise.ProductApplication.Extensions;
 using SlothEnterprise.ProductApplication.Products;
 
 namespace SlothEnterprise.ProductApplication.Strategies
@@ -20,13 +21,8 @@ namespace SlothEnterprise.ProductApplication.Strategies
             if (!(application.Product is BusinessLoans loans))
                 throw new InvalidOperationException(GetErrorMessage(typeof(BusinessLoans), application.Product.GetType()));
 
-            return _businessLoansService.SubmitApplicationFor(new CompanyDataRequest
-                {
-                    CompanyFounded = application.CompanyData.Founded,
-                    CompanyNumber = application.CompanyData.Number,
-                    CompanyName = application.CompanyData.Name,
-                    DirectorName = application.CompanyData.DirectorName
-                }, new LoansRequest
+            return _businessLoansService.SubmitApplicationFor(application.CompanyData.ToCompanyDataRequest(),
+                new LoansRequest
                 {
                     InterestRatePerAnnum = loans.InterestRatePerAnnum,
                     LoanAmount = loans.LoanAmount

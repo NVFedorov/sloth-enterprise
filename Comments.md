@@ -4,12 +4,12 @@ When you're developing a one-time tool or just something which you're never goin
 However if you're developing an enterprice level application which should be scallable, maintainable and extendable you should follow the common practices like SOLID principles.
 
 ### ProductApplicationService.cs
-There the following main problems with this class:
+There are the following main problems with this class:
 
 1. <b>Open-Closed principle violation</b>: this class must be modified if you want to extend it with a new service.
 2. <b>Single-Responsibility principle violation</b>: this class decides which service to call, how to create the input and how to process the output.
 3. <b>Growing constructor</b>: each time you want to add a new service you need to modify the constructor. Although you probably will use DI to create an instance of this class, but you still need to update all the related tests.
-4. <b>Code duplication</b>: there duplications of the ```CompanyDataRequest``` class initialization.
+4. <b>Code duplication</b>: there are duplications of the ```CompanyDataRequest``` class initialization.
 5. <b>Empty error</b>: if no result has been returned the method throws an empty error which is confusing. The error should have an error message.
 
 ## Solution

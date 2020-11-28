@@ -6,7 +6,7 @@ namespace SlothEnterprise.ProductApplication.Extensions
     public static class ModelExtensions
     {
         // Normally I would do it with AutoMapper
-        public static CompanyDataRequest FromSeller(this ISellerCompanyData seller)
+        public static CompanyDataRequest ToCompanyDataRequest(this ISellerCompanyData seller)
         {
             return new CompanyDataRequest
             {
